@@ -1,5 +1,11 @@
 class ManagerController < ApplicationController
-  def manage    
-    render plain: 'This was a Test.'
+  def manage
+    requestBody = params[:manager]
+
+    restClient = RestClientFactory.create requestBody[:marketPlace]
+
+    responseBody = restClient.get
+
+    render json: responseBody
   end
 end
