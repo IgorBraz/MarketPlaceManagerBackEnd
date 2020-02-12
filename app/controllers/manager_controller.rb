@@ -4,7 +4,7 @@ class ManagerController < ApplicationController
 
     restClient = RestClientFactory.create requestBody[:marketPlace]
 
-    responseBody = restClient.post
+    responseBody = restClient.get
 
     render json: responseBody
   end
