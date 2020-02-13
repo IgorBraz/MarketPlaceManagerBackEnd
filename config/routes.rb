@@ -1,4 +1,4 @@
 Rails.application.routes.draw do
   post 'manager/manage'
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  post 'auto_path/run'
 end
