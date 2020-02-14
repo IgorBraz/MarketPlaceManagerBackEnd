@@ -31,6 +31,8 @@ class AutoPathController < ApplicationController
 
                     step[:status] = "Completed"
                 rescue => exception
+                    step[:action_result] = exception.message
+
                     step[:status] = "Error"
                 end                
             end
