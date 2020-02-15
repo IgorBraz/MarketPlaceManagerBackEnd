@@ -15,7 +15,6 @@ require "action_cable/engine"
 # require "sprockets/railtie"
 # require "rails/test_unit/railtie"
 require 'net/http'
-$LOAD_PATH << File.join('C:', 'Users', 'igorb', 'Desktop', 'connectors', 'rest_connector')
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -35,5 +34,13 @@ module MarketplaceManagerBackEnd
     # Middleware like session, flash, cookies can be added back manually.
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
+
+    connectors_dir = File.join('C:', 'Users', 'igorb', 'Desktop', 'connectors')
+
+    $LOAD_PATH << connectors_dir 
+    $LOAD_PATH << File.join(connectors_dir, 'rest_connector')
+
+    require 'action'
+    require 'rest_connector'
   end
 end
