@@ -25,9 +25,31 @@ class AutoPathController < ApplicationController
                     action.set_connector_parameters step_connector[:parameters]
                     action.set_action_parameters step_action[:parameters]
     
+                    depends_on = step[:depends_on]
+
+                    if depends_on && depends_on.length > 0
+                        depends_on.each do |dependency|
+                            path_step = path_steps[dependency[:step_index].to_i]
+
+                            input_name = dependency[:input_name]
+
+                            json_result = path_step[:action_result]
+
+                            if (input_name.nil? || input_name.blank?)                                
+                                action_input = JSON.parse json_result
+                            else
+                                action_input = JSON.parse json_result
+
+                                action_input = { dependency[:input_name] => action_input }
+                            end                            
+
+                            action.add_input action_input
+                        end
+                    end
+
                     action.run
     
-                    step[:action_result] = action.result
+                    step[:action_result] = action.result.force_encoding("UTF-8")
 
                     step[:status] = "Completed"
                 rescue => exception
