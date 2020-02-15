@@ -27,9 +27,17 @@ class AutoPathController < ApplicationController
     
                     depends_on = step[:depends_on]
 
+                    this_step_index = step[:index].to_i
+
                     if depends_on && depends_on.length > 0
                         depends_on.each do |dependency|
-                            path_step = path_steps[dependency[:step_index].to_i]
+                            dependency_step_index = dependency[:step_index].to_i
+
+                            if (this_step_index < dependency_step_index)
+                                raise StandardError.new "A Step can never depend on a Step that has not run yet."
+                            end
+
+                            path_step = path_steps[dependency_step_index]
 
                             input_name = dependency[:input_name]
 
@@ -60,6 +68,8 @@ class AutoPathController < ApplicationController
                     step[:action_result] = exception.message
 
                     step[:status] = "Error"
+
+                    break
                 end                
             end
 
