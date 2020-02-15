@@ -49,7 +49,11 @@ class AutoPathController < ApplicationController
 
                     action.run
     
-                    step[:action_result] = action.result.force_encoding("UTF-8")
+                    if (action.result.nil?)
+                        step[:action_result] = nil
+                    else
+                        step[:action_result] = action.result.force_encoding("UTF-8")
+                    end                    
 
                     step[:status] = "Completed"
                 rescue => exception
