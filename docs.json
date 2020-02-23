@@ -1,0 +1,51 @@
+{
+	"Track unique Id."
+    "track_id": "1",
+	"An array of steps being tracked."
+	"steps": [
+		{
+			"The numeric index in which this step should be run.,"
+			"index": "0",
+			"Connector data used in this step."
+			"connector": {
+				"The unique Id of this connector, used to locate and run it."
+				"id": "vtex_connector",
+			},
+			"Connector action data used in this step."
+			"action": {
+				"Unique action Id, used to locate and run it."
+				"id": "get_product_by_id_action", 
+			}
+		},
+		{
+			"index": "1",
+			"connector": {
+				"id": "script_connector",
+			},
+			"action": {
+				"id": "run_action",
+			},
+			"An array containing the action data on which this step depends, so it can grab the actions' output and use it as it's input. A step should never depend on an index greater than itself's."
+			"depends_on": [
+				{
+					"The index of the step. This is where the input is going to come from."
+					"step_index": "0",
+					"A name for the input. Optional since most connector's actions won't use it."
+					"input_name": "vtex_product"
+				}
+			]
+		},
+		{
+			"index": "2",
+			"connector": {
+				"id": "b2w_connector",
+			},
+			"action": {
+				"id": "post_product_action", 
+			},
+			"depends_on": [
+				"step_index": "1"
+			]
+		}
+	]
+}
