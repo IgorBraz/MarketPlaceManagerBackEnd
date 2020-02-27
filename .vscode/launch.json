@@ -5,7 +5,21 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Rails server",
+            "name": "Linux Rails server",
+            "type": "Ruby",
+            "request": "launch",
+            "cwd": "${workspaceRoot}",
+            "program": "${workspaceRoot}/bin/rails",
+            "args": [
+               "server"
+            ],
+			"env": {
+              "PATH": "/home/igorb/.gem/ruby/2.7.0/bin",
+            },
+            "pathToRDebugIDE": "/home/igorb/.gem/ruby/2.7.0/bin/rdebug-ide"
+        },
+        {
+            "name": "Windows Rails server",
             "type": "Ruby",
             "request": "launch",
             "cwd": "${workspaceRoot}",
