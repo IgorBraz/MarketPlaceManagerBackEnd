@@ -35,7 +35,7 @@ module MarketplaceManagerBackEnd
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
 
-    connectors_dir = File.join(File.expand_path(".."), 'Connectors')
+    connectors_dir = File.join(File.expand_path('..'), 'Connectors')
 
     $LOAD_PATH << connectors_dir 
     $LOAD_PATH << File.join(connectors_dir, 'rest_connector')

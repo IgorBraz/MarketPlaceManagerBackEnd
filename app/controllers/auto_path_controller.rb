@@ -13,7 +13,7 @@ class AutoPathController < ApplicationController
                     connectorId = step_connector[:id]
                     actionId = step_action[:id]
                     
-                    connector_directory = File.join('C:', 'Users', 'igorb', 'Desktop', 'connectors', connectorId)
+                    connector_directory = File.join(File.expand_path('..'), 'Connectors', connectorId)
 
                     $LOAD_PATH << connector_directory unless $LOAD_PATH.include?(connector_directory)
     
